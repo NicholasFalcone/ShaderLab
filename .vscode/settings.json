@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ShaderURP.sln"
+    "dotnet.defaultSolution": "ShaderLab.sln"
 }
