@@ -202,7 +202,7 @@ float2 EvaluateLayeredCellularNoise(float3 p,float3 offset, float strength, int 
 void CellularNoise3D_float(float3 In, out float F1,out float F2){
     float2 noise;
 
-    #if SHADERGRAPH_PREVIEW
+    #if defined(SHADERGRAPH_PREVIEW)
         noise = cellular(In);        
         F1 = noise.x;
 		F2 = noise.y;
@@ -216,7 +216,7 @@ void CellularNoise3D_float(float3 In, out float F1,out float F2){
 void CellularNoise3DLayered_float(float3 In,float3 Offset,float Strength,int Octaves,float BaseRoughness,float Roughness,float Persistence,out float F1,out float F2){
     float2 noise;
 
-    #if SHADERGRAPH_PREVIEW
+    #if defined(SHADERGRAPH_PREVIEW)
         noise = EvaluateLayeredCellularNoise(In,Offset,Strength,Octaves,BaseRoughness, Roughness, Persistence);
         F1 = noise.x;
 		F2 = noise.y;

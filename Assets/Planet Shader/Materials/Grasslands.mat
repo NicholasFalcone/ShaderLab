@@ -8,11 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grasslands
-  m_Shader: {fileID: -6465566751694194690, guid: 757ff610582903246ac9d48ab71e22bc,
+  m_Shader: {fileID: -6465566751694194690, guid: 9e24f27d4b8754bef9ec39fbaafb070d,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - ENUM_4F36A403_SIMPLEX3D
+  - ENUM_85E93F22_CELLULAR3D
+  - ENUM_CE90E89C_SIMPLEX3D
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -33,6 +36,46 @@ Material:
         m_Texture: {fileID: 2800000, guid: b03dfbc43c66ee1418ec2d0e54a5388f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture1Main:
+        m_Texture: {fileID: 2800000, guid: bd7d0d213a99c4b45ab6bc5789ca5f6e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture1NormalMap:
+        m_Texture: {fileID: 2800000, guid: 5d1a91da624cbe3419894ef66da10da7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture2Main:
+        m_Texture: {fileID: 2800000, guid: dccf04eb5406e154e95befdd0d2dec21, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture2NormalMap:
+        m_Texture: {fileID: 2800000, guid: 7f759979b18536c4395cc99acfccd5ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture3Main:
+        m_Texture: {fileID: 2800000, guid: 47f62ed48420948759f23e77103e78e2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture3NormalMap:
+        m_Texture: {fileID: 2800000, guid: 47a0c260f3d7d4d0f805429423eed767, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture4Main:
+        m_Texture: {fileID: 2800000, guid: 47f62ed48420948759f23e77103e78e2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture4NormalMap:
+        m_Texture: {fileID: 2800000, guid: 47a0c260f3d7d4d0f805429423eed767, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture5Main:
+        m_Texture: {fileID: 2800000, guid: 9b9564cd828b001479f30f7b519ef809, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture5NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3a5de69d8ecd71b439f9fb6e2057372d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 2800000, guid: b45631803a41f3c4e81550e2ea80c6e4, type: 3}
         m_Scale: {x: 10, y: 10}
@@ -47,6 +90,46 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 2800000, guid: 8ce1617ec3421164c9080c8f49456cd8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture1Main:
+        m_Texture: {fileID: 2800000, guid: bd7d0d213a99c4b45ab6bc5789ca5f6e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture1NormalMap:
+        m_Texture: {fileID: 2800000, guid: 5d1a91da624cbe3419894ef66da10da7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture2Main:
+        m_Texture: {fileID: 2800000, guid: dccf04eb5406e154e95befdd0d2dec21, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture2NormalMap:
+        m_Texture: {fileID: 2800000, guid: 7f759979b18536c4395cc99acfccd5ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture3Main:
+        m_Texture: {fileID: 2800000, guid: b900361e13e6eaa44963cb851faf3ed3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture3NormalMap:
+        m_Texture: {fileID: 2800000, guid: 9e91cd5bde426714d9f0ef165f143d7c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture4Main:
+        m_Texture: {fileID: 2800000, guid: df6a65224a0114ddd86be26fcabbabf5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture4NormalMap:
+        m_Texture: {fileID: 2800000, guid: 1429f44d2651f40f3aa1fa99101c963e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture5Main:
+        m_Texture: {fileID: 2800000, guid: 9b9564cd828b001479f30f7b519ef809, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture5NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3a5de69d8ecd71b439f9fb6e2057372d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Heightmap_Map:
@@ -77,6 +160,46 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture1Main:
+        m_Texture: {fileID: 2800000, guid: 11f3f024aa614454c8b24f3cbb2007f6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture1NormalMap:
+        m_Texture: {fileID: 2800000, guid: abfa43ea86ee14ae288601db86e5e5a0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture2Main:
+        m_Texture: {fileID: 2800000, guid: 9b9564cd828b001479f30f7b519ef809, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture2NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3a5de69d8ecd71b439f9fb6e2057372d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture3Main:
+        m_Texture: {fileID: 2800000, guid: 9b9564cd828b001479f30f7b519ef809, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture3NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3a5de69d8ecd71b439f9fb6e2057372d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture4Main:
+        m_Texture: {fileID: 2800000, guid: 9b9564cd828b001479f30f7b519ef809, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture4NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3a5de69d8ecd71b439f9fb6e2057372d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture5Main:
+        m_Texture: {fileID: 2800000, guid: 9b9564cd828b001479f30f7b519ef809, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture5NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3a5de69d8ecd71b439f9fb6e2057372d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -90,7 +213,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_1:
-        m_Texture: {fileID: 2800000, guid: 94ddededa5cbf2242b63ddd549cfba38, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7332c22810418e940a28b569ff493cf2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_10:
@@ -118,7 +241,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_3:
-        m_Texture: {fileID: 2800000, guid: 20e8f0574dfbc8f4e9ea37a90e90345f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2f11c4bf57fe64b4f859276390ae902d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_4:
@@ -126,23 +249,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_5:
-        m_Texture: {fileID: 2800000, guid: 36b88763521a03549b56d085b6f1e518, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59340c34796aba74f821afc78115b91c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_6:
-        m_Texture: {fileID: 2800000, guid: 36b88763521a03549b56d085b6f1e518, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59340c34796aba74f821afc78115b91c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_7:
-        m_Texture: {fileID: 2800000, guid: 36b88763521a03549b56d085b6f1e518, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59340c34796aba74f821afc78115b91c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_8:
-        m_Texture: {fileID: 2800000, guid: 36b88763521a03549b56d085b6f1e518, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59340c34796aba74f821afc78115b91c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_9:
-        m_Texture: {fileID: 2800000, guid: 36b88763521a03549b56d085b6f1e518, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59340c34796aba74f821afc78115b91c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_Normal:
@@ -186,23 +309,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_Normal_5:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1ca8aa938472ee44881646574d844978, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_Normal_6:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1ca8aa938472ee44881646574d844978, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_Normal_7:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1ca8aa938472ee44881646574d844978, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_Normal_8:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1ca8aa938472ee44881646574d844978, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_Normal_9:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1ca8aa938472ee44881646574d844978, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Water_Texture:
@@ -223,7 +346,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - ENUM_4F36A403: 0
+    - ENUM_85E93F22: 1
+    - ENUM_CE90E89C: 0
     - _AlphaClip: 0
+    - _BiomesEdgeNoiseScale: 0.5
+    - _BiomesEdgeNoiseStrength: -8.71
     - _Biomes_Edge_Noise_Scale: 0.5
     - _Biomes_Edge_Noise_Strength: 0.4
     - _Blend: 0
@@ -235,14 +363,28 @@ Material:
     - _Cutoff: 0.5
     - _Depths_Height: 0.453
     - _Depths_are_Emissive: 0
+    - _DesertBiomeDisplacementAmplitude: 0.4
+    - _DesertBiomeDisplacementPower: 2.4
+    - _DesertBiomeNoiseBaseRoughness: 0.15
+    - _DesertBiomeNoiseOctaves: 3
+    - _DesertBiomeNoisePersistence: 0.5
+    - _DesertBiomeNoiseRoughness: 6.3
+    - _DesertBiomeNoiseStrength: 0.7
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Dirt_Height: 0.958
     - _Dirt_is_Emissive: 0
-    - _Displacement_Amplitude: 0.5
-    - _Displacement_Amplitude_1: 0.28
+    - _Displacement_Amplitude: 2.54
+    - _Displacement_Amplitude_1: 2.51
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _ForestBiomeDisplacementAmplitude: 0.5
+    - _ForestBiomeDisplacementPower: 2.7
+    - _ForestBiomeNoiseBaseRoughness: 2
+    - _ForestBiomeNoiseOctaves: 3
+    - _ForestBiomeNoisePersistence: 0.5
+    - _ForestBiomeNoiseRoughness: 1.5
+    - _ForestBiomeNoiseStrength: 0.7
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossinessSource: 0
@@ -260,29 +402,38 @@ Material:
     - _Lights_Scale: 5
     - _Lights_Visibility: 0
     - _Lights_on_Daylight_Side: 0
+    - _Metalic: -0.05
     - _Metallic: 0
-    - _Noise_Base_Roughness: 3.18
-    - _Noise_Base_Roughness_1: 2.48
-    - _Noise_Octaves: 3.65
-    - _Noise_Octaves_1: 3
+    - _Noise_Base_Roughness: 1.77
+    - _Noise_Base_Roughness_1: 1.91
+    - _Noise_Octaves: 1.5
+    - _Noise_Octaves_1: 1.7
     - _Noise_Offset: 3
-    - _Noise_Power: 1.92
-    - _Noise_Power_1: 1
-    - _Noise_Precision: 0.27
-    - _Noise_Precision_1: 0.5
-    - _Noise_Roughness: 1.56
-    - _Noise_Roughness_1: 1.6
-    - _Noise_Scale: 1.61
-    - _Noise_Strength: 0.7
-    - _Noise_Strength_1: 0.7
+    - _Noise_Power: 2
+    - _Noise_Power_1: 1.76
+    - _Noise_Precision: 0.57
+    - _Noise_Precision_1: 0.9
+    - _Noise_Roughness: 1
+    - _Noise_Roughness_1: 1.64
+    - _Noise_Scale: 0.54
+    - _Noise_Strength: 0.47
+    - _Noise_Strength_1: 0.49
     - _Normal_Detail_Strength: 0.15
     - _Normal_DistanceStrength: 0.001
     - _Normal_Distance_Strength: 1
     - _Normal_Strength: 0.003
-    - _Occlusion: 1.11
+    - _Occlusion: 3.89
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Planet_Radius: 1.17
+    - _PlanetMeshRadius: 1
+    - _Planet_Radius: 0.64
+    - _PolarBiomeDisplacementAmplitude: 0.2
+    - _PolarBiomeDisplacementPower: 1
+    - _PolarBiomeNoiseBaseRoughness: 2
+    - _PolarBiomeNoiseOctaves: 2.59
+    - _PolarBiomeNoisePersistence: 0.5
+    - _PolarBiomeNoiseRoughness: 1.1
+    - _PolarBiomeNoiseStrength: 2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -297,7 +448,7 @@ Material:
     - _Shininess: 0
     - _Shore_Height: 0.22
     - _Shore_is_Emissive: 0
-    - _Smoothness: 0.3
+    - _Smoothness: 0.91
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _Snow_Height: 0.98
@@ -317,15 +468,37 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BiomesEdgeNoiseOffset: {r: 123, g: 0, b: 0, a: 0}
     - _Biomes_Edge_Noise_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Depths_Colour: {r: 0.17079026, g: 0.40401843, b: 0.5377358, a: 0}
+    - _DesertBiomeNoiseOffset: {r: 30, g: 0, b: 0, a: 0}
+    - _DesertBiomeTexture1BlendStartEnd: {r: 0.175, g: 0.225, b: 0, a: 0}
+    - _DesertBiomeTexture2BlendStartEnd: {r: 0.375, g: 0.425, b: 0, a: 0}
+    - _DesertBiomeTexture3BlendStartEnd: {r: 0.575, g: 0.625, b: 0, a: 0}
+    - _DesertBiomeTexture4BlendStartEnd: {r: 0.775, g: 0.825, b: 0, a: 0}
+    - _DesertBiomeTextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _DesertBiomeTextureTiling: {r: 8, g: 8, b: 0, a: 0}
     - _Dirt_Colour: {r: 0.3207547, g: 0.28498778, b: 0.21988843, a: 0}
     - _EmissionColor: {r: 8, g: 7.9748425, b: 7.9748425, a: 1}
+    - _ForestBiomeNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _ForestBiomeTexture1BlendStartEnd: {r: 0.175, g: 0.225, b: 0, a: 0}
+    - _ForestBiomeTexture2BlendStartEnd: {r: 0.375, g: 0.425, b: 0, a: 0}
+    - _ForestBiomeTexture3BlendStartEnd: {r: 0.575, g: 0.625, b: 0, a: 0}
+    - _ForestBiomeTexture4BlendStartEnd: {r: 0.775, g: 0.825, b: 0, a: 0}
+    - _ForestBiomeTextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _ForestBiomeTextureTiling: {r: 8, g: 8, b: 0, a: 0}
     - _Grass_Colour: {r: 0.3207547, g: 0.28309795, b: 0.25014833, a: 0}
     - _Lights_Color: {r: 1, g: 0.8460458, b: 0.37254906, a: 1}
     - _Noise_Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Noise_Offset_1: {r: 0.63, g: 0, b: 0, a: 0}
+    - _Noise_Offset_1: {r: 0, g: 0, b: 0, a: 0}
+    - _PolarBiomeNoiseOffset: {r: 10, g: 0, b: 0, a: 0}
+    - _PolarBiomeTexture1BlendStartEnd: {r: 0.175, g: 0.225, b: 0, a: 0}
+    - _PolarBiomeTexture2BlendStartEnd: {r: 0.375, g: 0.425, b: 0, a: 0}
+    - _PolarBiomeTexture3BlendStartEnd: {r: 0.575, g: 0.625, b: 0, a: 0}
+    - _PolarBiomeTexture4BlendStartEnd: {r: 0.775, g: 0.825, b: 0, a: 0}
+    - _PolarBiomeTextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _PolarBiomeTextureTiling: {r: 8, g: 8, b: 0, a: 0}
     - _Rock_Colour: {r: 0.26415092, g: 0.25335228, b: 0.25335228, a: 0}
     - _Sand_Colour: {r: 0.3962264, g: 0.37269685, b: 0.2192951, a: 0}
     - _Shallows_Colour: {r: 0.09522961, g: 0.1748978, b: 0.2830189, a: 0}
@@ -338,9 +511,9 @@ Material:
     - _Texture_Blend_11: {r: 0.77, g: 0.83, b: 0, a: 0}
     - _Texture_Blend_2: {r: 0.57, g: 0.63, b: 0, a: 0}
     - _Texture_Blend_3: {r: 0.77, g: 0.82, b: 0, a: 0}
-    - _Texture_Blend_4: {r: 0, g: 0, b: 0, a: 0}
-    - _Texture_Blend_5: {r: 0, g: 0, b: 0, a: 0}
-    - _Texture_Blend_6: {r: 0, g: 0, b: 0, a: 0}
+    - _Texture_Blend_4: {r: 0.17, g: 0.23, b: 0, a: 0}
+    - _Texture_Blend_5: {r: 0.37, g: 0.43, b: 0, a: 0}
+    - _Texture_Blend_6: {r: 0.57, g: 0.63, b: 0, a: 0}
     - _Texture_Blend_7: {r: 0.77, g: 0.83, b: 0, a: 0}
     - _Texture_Blend_8: {r: 0, g: 0, b: 0, a: 0}
     - _Texture_Blend_9: {r: 0, g: 0, b: 0, a: 0}
