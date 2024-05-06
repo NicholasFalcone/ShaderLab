@@ -1,0 +1,312 @@
+#include "PixelSorting.cginc"
+
+#pragma kernel CS_CreateMask
+#pragma kernel CS_TestSelectionSort
+#pragma kernel CS_TestBitonicSort
+#pragma kernel CS_TestCustomSort
+#pragma kernel CS_ClearBuffer
+#pragma kernel CS_IdentifySpans
+#pragma kernel CS_VisualizeSpans
+#pragma kernel CS_RGBtoSortValue
+#pragma kernel CS_PixelSort
+#pragma kernel CS_Composite
+
+half _LowThreshold, _HighThreshold;
+
+uint _BufferWidth, _BufferHeight, _FrameCount, _SpanLimit;
+
+float _FrameTime, _AnimationSpeed, _MaskRandomOffset, _Smoothness, _Gamma;
+
+int _InvertMask, _ReverseSorting, _HorizontalSorting, _SortBy, _MaxRandomOffset;
+
+RWTexture2D<half> _Mask;
+RWTexture2D<half4> _ColorBuffer;
+Texture2D<half4> _ColorTex;
+RWTexture2D<half4> _SortedBuffer;
+RWTexture2D<half> _HSLBuffer;
+RWTexture2D<half> _SpanBuffer;
+
+RWTexture2D<half4> _ClearBuffer;
+
+RWStructuredBuffer<uint> _NumberBuffer;
+RWStructuredBuffer<uint> _SortedNumberBuffer;
+
+SamplerState linearClampSampler;
+
+[numthreads(8,8,1)]
+void CS_CreateMask(uint3 id : SV_DispatchThreadID) {
+    uint seed = _HorizontalSorting ? id.y * _BufferHeight : id.x * _BufferWidth;
+    float rand = hash(seed + (_FrameTime * _AnimationSpeed)) * _MaskRandomOffset;
+
+
+    float2 o = _HorizontalSorting ? float2(rand, 0) : float2(0, rand);
+
+    float2 uv = id.xy / float2(_BufferWidth, _BufferHeight);
+    uv += o;
+
+    half4 col = saturate(_ColorTex.SampleLevel(linearClampSampler, uv, 0));
+
+    half l = luminance(col.rgb);
+
+    int result = 1;
+    if (l < _LowThreshold || _HighThreshold < l)
+        result = 0;
+    
+    _Mask[id.xy] = _InvertMask ? 1 - result : result;
+}
+
+// Selection Sort, so performant!!!!
+[numthreads(1,1,1)]
+void CS_TestSelectionSort(uint3 id : SV_DISPATCHTHREADID) {
+    int n = 16;
+
+    for (int i = 0; i < n - 1; ++i) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (_NumberBuffer[j] < _NumberBuffer[minIndex])
+                minIndex = j;
+        }
+
+        int temp = _NumberBuffer[minIndex];
+        _NumberBuffer[minIndex] = _NumberBuffer[i];
+        _NumberBuffer[i] = temp;
+    }
+}
+
+//Implementation largely referenced from https://poniesandlight.co.uk/reflect/bitonic_merge_sort/ but without the bugs
+#define BITONIC_ELEMENTS 512
+
+groupshared half3 gs_ColorCache[BITONIC_ELEMENTS];
+
+half comparisonValue(half3 col) {
+    return luminance(col);
+}
+
+void compareAndSwap(int2 idx) {
+    half c1 = comparisonValue(gs_ColorCache[idx.x]);
+    half c2 = comparisonValue(gs_ColorCache[idx.y]);
+
+    bool result = _ReverseSorting ? c1 >= c2 : c1 <= c2;
+
+    if (result) {
+        half3 temp = gs_ColorCache[idx.x];
+        gs_ColorCache[idx.x] = gs_ColorCache[idx.y];
+        gs_ColorCache[idx.y] = temp;
+    }
+}
+
+void flip(int h, uint t) {
+    int q = ((2 * t) / h) * h;
+    uint half_h = h / 2;
+    int2 indices = q + int2(t % half_h, h - (t % half_h) - 1);
+    compareAndSwap(indices);
+}
+
+void disperse(int h, uint t) {
+    int q = ((2 * t) / h) * h;
+    uint half_h = h / 2;
+    int2 indices = q + int2(t % half_h, (t % half_h) + half_h);
+    compareAndSwap(indices);
+}
+
+[numthreads(BITONIC_ELEMENTS / 2, 1, 1)]
+void CS_TestBitonicSort(uint3 id : SV_DISPATCHTHREADID) {
+    uint2 t = id.xy;
+
+    if (t.x * 2 + 1 < _BufferWidth) {
+        gs_ColorCache[t.x * 2] = _ColorBuffer[uint2(t.x * 2, t.y)].rgb;
+        gs_ColorCache[t.x * 2 + 1] = _ColorBuffer[uint2(t.x * 2 + 1, t.y)].rgb;
+    } else {
+        gs_ColorCache[t.x * 2] = _ReverseSorting ? 1.0f : 0.0f;
+        gs_ColorCache[t.x * 2 + 1] = _ReverseSorting ? 1.0f : 0.0f;
+    }
+
+
+    uint n = BITONIC_ELEMENTS;
+    
+    [unroll]
+    for (uint h = 2; h <= n; h *= 2) {
+        GroupMemoryBarrierWithGroupSync();
+        flip(h, t.x);
+        
+        [unroll]
+        for (uint hh = h / 2; hh > 1; hh /= 2) {
+            GroupMemoryBarrierWithGroupSync();
+            disperse(hh, t.x);
+        }
+    }
+    
+    _SortedBuffer[uint2(t.x * 2, t.y)] = half4(gs_ColorCache[t.x * 2], 1.0f);
+    _SortedBuffer[uint2(t.x * 2 + 1, t.y)] = half4(gs_ColorCache[t.x * 2 + 1], 1.0f);
+}
+
+// Jank insertion sort to avoid swaps entirely and reduce texture writes to O(n)
+[numthreads(1, 1, 1)]
+void CS_TestCustomSort(uint3 id : SV_DISPATCHTHREADID) {
+    uint minNumber = 10000;
+    uint minIndex = 0;
+
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 16; ++j) {
+            uint n = _NumberBuffer[j];
+
+            if (n < minNumber) {
+                minIndex = j;
+                minNumber = n;
+            }
+        }
+
+        _SortedNumberBuffer[i] = minNumber;
+        _NumberBuffer[minIndex] = 100000;
+        minNumber = 10000;
+    }
+}
+
+[numthreads(8,8,1)]
+void CS_ClearBuffer(uint3 id : SV_DISPATCHTHREADID) {
+    _ClearBuffer[id.xy] = 0;
+}
+
+[numthreads(1, 1, 1)]
+void CS_IdentifySpans(uint3 id : SV_DISPATCHTHREADID) {
+    uint seed = id.x + _BufferWidth * id.y + _BufferWidth * _BufferHeight;
+    uint2 idx = 0;
+    uint pos = 0;
+    uint spanStartIndex = 0;
+    uint spanLength = 0;
+
+    uint screenLimit = _HorizontalSorting ? _BufferWidth : _BufferHeight;
+    uint spanLimit = _SpanLimit - (hash(seed * seed) * _MaxRandomOffset);
+
+    while (pos < screenLimit) {
+        idx = _HorizontalSorting ? uint2(pos, id.y) : uint2(id.x, pos);
+
+        int mask = _Mask[idx];
+        pos++;
+
+        if (mask == 0 || spanLength >= spanLimit) {
+            idx = _HorizontalSorting ? uint2(spanStartIndex, id.y) : uint2(id.x, spanStartIndex);
+            _SpanBuffer[idx] = mask == 1 ? spanLength + 1 : spanLength;
+            spanStartIndex = pos;
+            spanLength = 0;
+            seed = idx.x + _BufferWidth * idx.y + _BufferWidth * _BufferHeight;
+            spanLimit = _SpanLimit - (hash(seed * seed * 2) * _MaxRandomOffset);
+        } else {
+            spanLength++;
+        }
+    }
+
+    if (spanLength != 0) {
+        idx = _HorizontalSorting ? uint2(spanStartIndex, id.y) : uint2(id.x, spanStartIndex);
+        _SpanBuffer[idx] = spanLength;
+    }
+}
+
+[numthreads(8, 8, 1)]
+void CS_VisualizeSpans(uint3 id : SV_DISPATCHTHREADID) {
+    int spanLength = _SpanBuffer[id.xy];
+
+    if (spanLength >= 1) {
+        uint seed = id.x + _BufferWidth * id.y + _BufferWidth * _BufferHeight;
+        half4 c = half4(hash(seed), hash(seed * 2), hash(seed * 3), 1.0f);
+
+        for (int i = 0; i < spanLength; ++i) {
+            uint2 idx = _HorizontalSorting ? uint2(id.x + i, id.y) : uint2(id.x, id.y + i);
+            _SortedBuffer[idx] = c;
+        }
+    }
+}
+
+half sortMethod(half3 c, half3 hsl) {
+    if (_SortBy == 0)
+        return c.r;
+    else if (_SortBy == 1)
+        return c.g;
+    else if (_SortBy == 2)
+        return c.b; 
+    else if (_SortBy == 3)
+        return hsl.b;
+    else if (_SortBy == 4)
+        return hsl.g;
+    else if (_SortBy == 5)
+        return hsl.r;
+
+    return 0;
+}
+
+[numthreads(8, 8, 1)]
+void CS_RGBtoSortValue(uint3 id : SV_DISPATCHTHREADID) {
+    half3 c = saturate(_ColorBuffer[id.xy].rgb);
+    half3 hsl = RGBtoHSL(c);
+
+    _HSLBuffer[id.xy] = sortMethod(c, hsl);
+}
+
+groupshared half gs_PixelSortCache[1080];
+
+[numthreads(1, 1, 1)]
+void CS_PixelSort(uint3 id : SV_DISPATCHTHREADID) {
+    const uint spanLength = _SpanBuffer[id.xy];
+
+    if (spanLength >= 1) {
+        uint2 idx;
+
+        uint2 direction = _HorizontalSorting ? uint2(1, 0) : uint2(0, 1);
+        
+        for (uint k = 0; k < spanLength; ++k) {
+            idx = id.xy + k * direction;
+            gs_PixelSortCache[k] = _HSLBuffer[idx];
+        }
+
+        half minValue = gs_PixelSortCache[0];
+        half maxValue = gs_PixelSortCache[0];
+        uint minIndex = 0;
+        uint maxIndex = 0;
+
+        for (uint i = 0; i < (spanLength / 2) + 1; ++i) {
+            for (uint j = 1; j < spanLength; ++j) {
+                half v = gs_PixelSortCache[j];
+
+                if (v == saturate(v)) {
+                    if (v < minValue) {
+                        minValue = v;
+                        minIndex = j;
+                    }
+
+                    if (maxValue < v) {
+                        maxValue = v;
+                        maxIndex = j;
+                    }
+                }
+            }
+
+            uint2 minIdx = 0;
+            uint2 maxIdx = 0;
+            
+            if (_ReverseSorting) {
+                minIdx = id.xy + i * direction;
+                maxIdx = id.xy + (spanLength - i - 1) * direction;
+            } else {
+                minIdx = id.xy + (spanLength - i - 1) * direction;
+                maxIdx = id.xy + i * direction;
+            }
+
+            uint2 colorMinIdx = id.xy + minIndex * direction;
+            uint2 colorMaxIdx = id.xy + maxIndex * direction;
+
+            _SortedBuffer[minIdx] = _ColorBuffer[colorMinIdx];
+            _SortedBuffer[maxIdx] = _ColorBuffer[colorMaxIdx];
+            gs_PixelSortCache[minIndex] = 2;
+            gs_PixelSortCache[maxIndex] = -2;
+            minValue = 1;
+            maxValue = -1;
+        }
+    }
+}
+
+[numthreads(8, 8, 1)]
+void CS_Composite(uint3 id : SV_DISPATCHTHREADID) {
+    if (_Mask[id.xy] == 1) {
+        _ColorBuffer[id.xy] = pow(abs(_SortedBuffer[id.xy]), _Gamma);
+    }
+}
