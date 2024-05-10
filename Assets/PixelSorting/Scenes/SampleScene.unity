@@ -343,22 +343,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelSorter: {fileID: 7200000, guid: 8f615c61fd27b534abe7edb17b6f813f, type: 3}
-  image: {fileID: 8400000, guid: f96d3bfbfc9deed4e916fe55ce797e07, type: 2}
+  image: {fileID: 2800000, guid: 350871d035d044d4f8a0bac8443d0e72, type: 3}
+  mask: {fileID: 2800000, guid: 5795296f3de9fbc4c9db3915e8d41b86, type: 3}
   useImage: 1
   animateThresholds: 0
   resetAnimation: 0
   animationSpeed: 0
-  lowThreshold: 0.42
+  lowThreshold: 0.123
   highThreshold: 0.75
   debugMask: 1
   invertMask: 0
   maskRandomOffset: 0
   offsetAnimationSpeed: 0
-  debugSpans: 1
+  debugSpans: 0
   visualizeSpans: 0
   maxSpanLength: 1080
   maxRandomSpanOffset: 0
-  debugSorting: 1
+  debugSorting: 0
   sortBy: 5
   gamma: 1
   horizontalSorting: 0

@@ -6,6 +6,8 @@ public class PixelSorter : MonoBehaviour
 
     public Texture image;
 
+    public Texture mask;
+
     public bool useImage = false;
 
     public bool animateThresholds = false;
@@ -171,7 +173,7 @@ public class PixelSorter : MonoBehaviour
         pixelSorter.SetInt("_InvertMask", invertMask ? 1 : 0);
         pixelSorter.SetInt("_SortBy", (int)sortBy);
         pixelSorter.SetTexture(createMaskPass, "_Mask", maskTex);
-        pixelSorter.SetTexture(createMaskPass, "_ColorTex", colorTex);
+        pixelSorter.SetTexture(createMaskPass, "_ColorTex", mask);
 
         pixelSorter.Dispatch(createMaskPass, Mathf.CeilToInt(Screen.width / 8.0f), Mathf.CeilToInt(Screen.height / 8.0f), 1);
 
